@@ -3,7 +3,7 @@
     "target": "es2019",
     "module": "commonjs",
     "outDir": "./../build",
-    "declaration": false,
+    "declaration": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
     "removeComments": false,

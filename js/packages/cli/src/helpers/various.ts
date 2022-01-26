@@ -229,7 +229,7 @@ export function shuffle(array) {
   return array;
 }
 
-export const assertValidBreakdown = breakdown => {
+export const assertValidBreakdown = (breakdown:Array<number>) => {
   const total = Object.values(breakdown).reduce(
     (sum: number, el: number) => (sum += el),
     0,
@@ -244,6 +244,8 @@ export const generateRandomSet = (breakdown, dnp) => {
   let valid = true;
   let tmp = {};
 
+  throw Error('not impl')
+  /*
   do {
     valid = true;
     const keys = shuffle(Object.keys(breakdown));
@@ -305,6 +307,7 @@ export const generateRandomSet = (breakdown, dnp) => {
     });
   } while (!valid);
   return tmp;
+  */
 };
 
 export const getUnixTs = () => {
