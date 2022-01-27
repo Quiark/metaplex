@@ -34,6 +34,13 @@ import {
   VerifyCollection,
 } from '@metaplex-foundation/mpl-token-metadata';
 
+class MintInfo {
+  txid: string
+  publicKey: PublicKey
+  metadataAccount: PublicKey
+
+}
+
 export const createMetadata = async (
   metadataLink: string,
   collection: PublicKey,
@@ -98,7 +105,7 @@ export const mintNFT = async (
   mutableMetadata: boolean = true,
   collection: PublicKey = null,
   use: Uses = null,
-): Promise<PublicKey | void> => {
+): Promise<MintInfo | void> => {
   // Retrieve metadata
   const data = await createMetadata(metadataLink, collection, use);
   if (!data) return;
@@ -224,9 +231,13 @@ export const mintNFT = async (
 
   // Force wait for max confirmations
   await connection.getParsedConfirmedTransaction(res.txid, 'confirmed');
-  log.info('NFT created', res.txid);
-  log.info('\n\nNFT: Mint Address is ', mint.publicKey.toBase58());
-  return metadataAccount;
+  //log.info('NFT created', res.txid);
+  //log.info('\n\nNFT: Mint Address is ', mint.publicKey.toBase58());
+  let mintInfo = new MintInfo()
+  mintInfo.publicKey = mint.publicKey
+  mintInfo.metadataAccount = metadataAccount
+  mintInfo.txid = res.txid
+  return mintInfo
 };
 
 export const updateMetadata = async (
