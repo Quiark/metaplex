@@ -21,9 +21,7 @@
     ],
     "types": [
       "jest",
-      "node",
-      "webgl2",
-      "offscreencanvas"
+      "node"
     ],
   },
   "exclude": [
